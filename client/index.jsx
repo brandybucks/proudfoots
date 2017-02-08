@@ -6,7 +6,7 @@
 // The AppRoutes class defines the client side routes
 // The App class is the main view after a user has logged-in
 // Other view with non-nested component: login, signup, logout and about
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -22,6 +22,7 @@ const hashHistory = ReactRouter.hashHistory;
 const NavigationBar = require(__dirname + '/src/components/NavigationBar.jsx');
 const UserDashBoard = require(__dirname + '/src/components/UserDashBoard.jsx');
 const UserLegislatorsInfo = require(__dirname + '/src/components/UserLegislatorsInfo.jsx');
+const UserStateLegislatorsInfo = require(__dirname + '/src/components/UserStateLegislatorsInfo.jsx');
 const LegislationSearch = require(__dirname + '/src/components/LegislationSearch.jsx');
 const UserLogin = require(__dirname + '/src/components/UserLogin.jsx');
 const UserSignup = require(__dirname + '/src/components/UserSignup.jsx');
@@ -50,7 +51,7 @@ class App extends React.Component {
       .done((data) => {
         // Debug
         // console.log(data);
-        this.setState({        
+        this.setState({
           isVerifyingUserSession: false,
           isUserLoggedIn: true,
           username: data.username,
@@ -67,19 +68,20 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-        hashHistory.push('/about');
+        // this gets commented back IN for not testing
+        // hashHistory.push('/about');
 
         // Testing
-        // this.setState({
-        //   // Testing Only:
-        //   isVerifyingUserSession: false,          
-        //   isUserLoggedIn: true,
-        //   username: 'boba',
-        //   userLocation: {
-        //     lat: 37.795,
-        //     long: -122.40
-        //   }      
-        // });
+        this.setState({
+          // Testing Only:
+          isVerifyingUserSession: false,
+          isUserLoggedIn: true,
+          username: 'boba',
+          userLocation: {
+            lat: 37.795,
+            long: -122.40
+          }
+        });
 
       });
   }
@@ -109,7 +111,7 @@ class App extends React.Component {
           <NavigationBar username={this.state.username}/>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-8 col-lg-push-4">
+              <div className="col-lg-4 col-lg-push-8">
                 <span style={isShowing('UserDashBoard')}>
                   <UserDashBoard username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
@@ -118,8 +120,15 @@ class App extends React.Component {
                   <LegislationSearch style={isShowing('LegislationSearch')} username={this.state.username} />
                 </span>
               </div>
-              <div className="col-lg-4 col-lg-pull-8">
-                <UserLegislatorsInfo userLat={this.state.userLocation.lat} userLong={this.state.userLocation.long} />
+              <div className="col-lg-4 col-lg-pull-4">
+                <UserLegislatorsInfo
+                  userLat={this.state.userLocation.lat}
+                  userLong={this.state.userLocation.long} />
+              </div>
+              <div className="col-lg-4 col-lg-pull-4">
+                <UserStateLegislatorsInfo
+                  userLat={this.state.userLocation.lat}
+                  userLong={this.state.userLocation.long} />
               </div>
             </div>
           </div>
@@ -147,7 +156,7 @@ class AppRoutes extends React.Component {
         <Route path="/about" component={About} />
         <Route path="/login" component={UserLogin} />
         <Route path="/signup" component={UserSignup} />
-        <Route path="/logout" component={UserLogout} /> 
+        <Route path="/logout" component={UserLogout} />
         <Route path="/" component={App}>
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
           <Route path="/dashboard" components = {{main: 'UserDashBoard'}} />
@@ -155,6 +164,6 @@ class AppRoutes extends React.Component {
       </Router>
     );
   }
-} 
+}
 
 ReactDOM.render(<AppRoutes />, document.getElementById('app'));
