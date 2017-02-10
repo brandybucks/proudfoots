@@ -91,6 +91,7 @@ class ChatRoom extends React.Component {
           <form action="">
             <label>Discuss your thoughts:</label><br />
               <span className="input-group">
+                <span className="input-group-addon blue"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
                 <input id="message" className="form-control" type="text" placeholder="Enter Message" value={this.state.message} onChange={this.textHandler} onKeyDown={this.handleSubmit} autoComplete="off" />
                   <span className="input-group-btn">
                   <button className="btn blue" onClick={this.handleSubmit} >Send</button>

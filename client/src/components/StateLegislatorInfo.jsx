@@ -45,7 +45,6 @@ class StateLegislatorInfoPresentational extends React.Component {
                 <tr key={index}>
                   <td colSpan='2'>
                     <table className="table">
-                    <tbody>
                       <tr>
                         <td><b>{office.type}</b> Office Address:</td>
                       </tr>
@@ -55,7 +54,6 @@ class StateLegislatorInfoPresentational extends React.Component {
                       <tr>
                         <td>{office.phone}</td>
                       </tr>
-                      </tbody>
                     </table>
                   </td>
                 </tr>
