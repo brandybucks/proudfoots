@@ -20,6 +20,7 @@ const hashHistory = ReactRouter.hashHistory;
 
 // Import project custom components
 const NavigationBar = require(__dirname + '/src/components/NavigationBar.jsx');
+const LegislatorsInfo = require(__dirname + '/src/components/LegislatorsInfo.jsx');
 const UserDashBoard = require(__dirname + '/src/components/UserDashBoard.jsx');
 const UserLegislatorsInfo = require(__dirname + '/src/components/UserLegislatorsInfo.jsx');
 const UserStateLegislatorsInfo = require(__dirname + '/src/components/UserStateLegislatorsInfo.jsx');
@@ -74,19 +75,19 @@ class App extends React.Component {
 
 
 
-        hashHistory.push('/about');
+        // hashHistory.push('/about');
 
         // Testing
-        // this.setState({
+        this.setState({
           // Testing Only:
-        //   isVerifyingUserSession: false,
-        //   isUserLoggedIn: true,
-        //   username: 'boba',
-        //   userLocation: {
-        //     lat: 37.795,
-        //     long: -122.40
-        //   }
-        // });
+          isVerifyingUserSession: false,
+          isUserLoggedIn: true,
+          username: 'boba',
+          userLocation: {
+            lat: 37.795,
+            long: -122.40
+          }
+        });
 
       });
   }
@@ -116,7 +117,9 @@ class App extends React.Component {
           <NavigationBar username={this.state.username}/>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-6 col-lg-push-6">
+
+              <div className="col-lg-1"></div>
+              <div className="col-lg-10">
                 <span style={isShowing('UserDashBoard')}>
                   <UserDashBoard username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
@@ -128,19 +131,24 @@ class App extends React.Component {
                 <span style={isShowing('ChatRoom')}>
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
-              </div>
-              <div className="col-lg-6 col-lg-pull-6">
-                <UserLegislatorsInfo
-                  userLat={this.state.userLocation.lat}
-                  userLong={this.state.userLocation.long} />
-                <UserStateLegislatorsInfo
+
+
+                <span style={isShowing('LegislatorsInfo')}>
+                  <LegislatorsInfo
+                  style={isShowing('LegislatorsInfo')} 
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long}
                   userState={this.state.userState} />
+                </span>
+
+                <span style={isShowing('Meetups')}>
                 <Meetups
+                  style={isShowing('Meetups')} 
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
+                </span>
               </div>
+              <div className="col-lg-1"></div>
             </div>
           </div>
         </div>
@@ -152,7 +160,7 @@ class App extends React.Component {
 }
 
 App.defaultProps = {
-  main: 'UserDashBoard'
+  main: 'LegislatorsInfo'
 };
 
 // Routes definitions
@@ -170,8 +178,12 @@ class AppRoutes extends React.Component {
         <Route path="/logout" component={UserLogout} />
         <Route path="/trends" component={Trends}/>
         <Route path="/" component={App}>
+
+          <IndexRoute component={{main: 'LegislatorsInfo'}} />
+          <Route path="/legislators" components = {{main: 'LegislatorsInfo'}} />
+          <Route path="/meetups" components = {{main: 'Meetups'}} />
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
-          <Route path="/dashboard" components = {{main: 'UserDashBoard'}} />
+          <Route path="/monitor" components = {{main: 'UserDashBoard'}} />
           <Route path="/chat" components = {{main: 'ChatRoom'}} />
         <Route path="/logout" component={UserLogout} />
         </Route>

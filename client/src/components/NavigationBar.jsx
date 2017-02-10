@@ -32,10 +32,13 @@ class NavigationBar extends React.Component {
 
           <div className="navbar-collapse collapse" id="navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
-              <li><Link to="/search" className="nav-link">Search</Link></li>
               <li><Link to="/trends" className="nav-link">Trends</Link></li>
               <li><Link to="/chat" className="nav-link">Chat</Link></li>
+              <li><Link to="/meetups" className="nav-link">Meetup</Link></li>
+               <li><a href="https://www.change.org" className="nav-link">Petition</a></li>
+               <li><Link to="/monitor" className="nav-link">Monitor</Link></li>
+              <li><Link to="/search" className="nav-link">Search</Link></li>
+              <li><Link to="/legislators" className="nav-link">Legislators</Link></li>
             </ul>
 
             <div className="navbar-right">

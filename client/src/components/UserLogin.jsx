@@ -42,7 +42,7 @@ class UserLogin extends React.Component {
     // Send a AJAX POST request to the back-end server
     $.ajax('login/', ajaxOptions)
       .done(function(data) {
-        hashHistory.push('/dashboard');
+        hashHistory.push('/legislators');
       })
       .fail(error => {
         this.setState({

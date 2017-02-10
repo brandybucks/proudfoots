@@ -74,7 +74,7 @@ class UserDashBoard extends React.Component {
   render() {
     return (
       <div>
-        <h3>Dashboard</h3>
+        <h3>Monitor Bills</h3>
         <UserDashBoardKeywordsEntryBar onAddMonitoredWords={this.handleAddMonitoredWords}/>
 
         {/* Display 'Loading' messages when user monitored keywords and results is being fetched */}
