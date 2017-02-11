@@ -36,9 +36,7 @@ class LegislationSearch extends React.Component {
         billResults={this.state.searchResults}
         onSearchSubmit={this.handleSearchSubmit}
       />
-      {!this.props.isFetching &&
-        <Trends search={this.state.searchGoogle} />
-      }
+
      </div>
     );
   }
@@ -49,17 +47,7 @@ class LegislationSearch extends React.Component {
     // queryGoogle(searchTerms, function(data){
     //   console.log(data);
     // })
-    var context = this;
-    axios.post('http://localhost:8080/queryGoogle/', {
-        query: searchTerms
-    })
-    .then(function(response){
-      console.log('response', response);
-      context.setState({searchGoogle: response.data})
-    })
-    .catch(function(error){
-      console.log(error);
-    })
+
 
     ////////////////////////////////////////////////////////////////
 
