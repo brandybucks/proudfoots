@@ -142,21 +142,27 @@ exports.queryGoogle = function(req, res) {
 }
 
 /////////////////////////////////////////////////////////////////
-// HANDLES DELETION OF MONITORED WORDS
+// HANDLES SAVING MESSAGE AND USER TO DATABASE
 /////////////////////////////////////////////////////////////////
 exports.retrieveMessages = function(req, res) {
-  // Message.find({}, function(err, data) {
-  //   if (err) throw err;
-  //   console.log(data)
-  //   res.send("data fetched", data.body)
-  // })
-  res.send('HI')
+  Message.find({}, function(err, data) {
+    if (err) throw err;
+    console.log(data)
+    res.status(200).send(data)
+    //res.send("data fetched", data.body)
+  })
+  //res.send('HI')
 };
 
 exports.postMessage = function(req, res) {
+  console.log("from post message handler", req.body)
   var message = new Message({
-    user: req.query.user,
-    message: req.query.message
+    user: req.body.user,
+    message: req.body.message
+  })
+  message.save((err) => {
+    if(err) throw err;
+    console.log("message saved to M lab!!")
   })
   console.log(message)
   res.send(message)

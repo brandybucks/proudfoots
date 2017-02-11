@@ -26,7 +26,7 @@ var io = socketIo(server);
 io.on('connection', function(socket) {
   console.log("SOCKET CONNECTED!!!!!")
   socket.on('message', function(messageObj) {
-    console.log("message received from backend!!", messageObj)
+    //console.log("message received from backend!!", messageObj)
     socket.broadcast.emit('message', messageObj)
     console.log("MESSAGE EMITTED")
   })

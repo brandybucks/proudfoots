@@ -25,15 +25,19 @@ class ChatRoom extends React.Component {
     });
   }
 
-  // componentWillMount() {
-  //   axiosHelper.getAllMessage()
-  //   .then((resp) => {
-  //     console.log("Data retrieve!!!!!", resp.data)
-  //   })
-  //   .catch((err) => {
-  //     console.log('Could not retrieve message!!')
-  //   })
-  // }
+  componentWillMount() {
+    axiosHelper.getAllMessage()
+    .then((resp) => {
+      console.log("Data retrieve!!!!!", resp.data)
+    this.setState({
+      messages: resp.data
+      //messages: [...this.state.messages, message]
+    });
+    })
+    .catch((err) => {
+      console.log('Could not retrieve message!!')
+    })
+  }
 
   //for all socket.io events need to handle by componentDidMount.
   componentDidMount() {
@@ -86,7 +90,7 @@ class ChatRoom extends React.Component {
       user
     }
 
-    //this.saveMessageToDB(message)
+    this.saveMessageToDB(message)
 
     this.setState({
       messages: [...this.state.messages, message]
