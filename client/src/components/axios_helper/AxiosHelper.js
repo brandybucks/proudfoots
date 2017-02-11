@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 exports.addMessage = (data) => {
-  console.log("fires from axios add message");
+  console.log("fires from axios add message", data);
   return axios.post('/addmessage', data);
 };
 
