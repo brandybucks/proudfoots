@@ -78,8 +78,6 @@ class UserStateLegislatorsInfo extends React.Component {
     //   long: -122.40
     // }
   getGovernorByState() {
-    console.log('this.props.userState', this.props.userState);
-
     var state;
 
     if (this.props.userState.length === 2) {
