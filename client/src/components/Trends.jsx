@@ -45,6 +45,7 @@ class Trends extends React.Component {
   render() {
 
     return(
+      <div className = "trends">
       <div className = "card-columns" style={{"margin": 'auto'}}>
         {this.state.searchGoogle.map((x, key) => {
           return(
@@ -65,6 +66,7 @@ class Trends extends React.Component {
             </div>
           )
         })}
+      </div>
       </div>
 
     )
