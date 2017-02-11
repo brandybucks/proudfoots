@@ -73,8 +73,6 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-
-
         // hashHistory.push('/about');
 
         // Testing
@@ -178,7 +176,7 @@ class AppRoutes extends React.Component {
         <Route path="/signup" component={UserSignup} />
         <Route path="/logout" component={UserLogout} />
         <Route path="/" component={App}>
-          <IndexRoute component={{main: 'LegislatorsInfo'}} />
+          <IndexRoute component={{main: 'Trends'}} />
           <Route path="/trends" component={{main: 'Trends'}} />
           <Route path="/legislators" components = {{main: 'LegislatorsInfo'}} />
           <Route path="/meetups" components = {{main: 'Meetups'}} />
