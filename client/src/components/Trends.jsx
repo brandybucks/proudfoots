@@ -4,8 +4,8 @@ const Link = ReactRouter.Link;
 import axios from 'axios';
 
 class Trends extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       searchGoogle: []
     }
@@ -16,10 +16,17 @@ class Trends extends React.Component {
 
   handleSearchSubmit() {
     /////////////////////////////////////////////////////////////////
+    var queryArray=[];
+
+    for (var i = 0; i < this.props.userMonitoredKeywords.length; i++) {
+      queryArray.push(this.props.userMonitoredKeywords[i].keyword)
+    }
+
     var context = this;
+
     axios.post('http://localhost:8080/queryGoogle/', {
-        query: 'politic'
-    })
+        query: queryArray
+      })
     .then(function(response){
       console.log('response', response);
       context.setState({searchGoogle: response.data})
@@ -33,42 +40,13 @@ class Trends extends React.Component {
     this.handleSearchSubmit();
   }
 
-    // <a href = {x['ht:news_item'][0]['ht:news_item_url'][0]} >
-    //   <img src= {x['ht:picture'][0]}  />
-    //  <h5>{ x['ht:news_item'][0]['ht:news_item_title'][0]} </h5>
-    //  </a>
 
-
-    //////////////////2nd attempt ///////////////////////////
-/*
-
-
-
-
-            <div className = "card">
-              <div className="card-image waves-effect waves-block waves-light">
-                <img className="activator" src= {x['ht:picture'][0]}/>
-              </div>
-            <div className="card-content">
-              <span className="card-title activator grey-text text-darken-4">{ x['ht:news_item'][0]['ht:news_item_title'][0]}<i className="material-icons right">more_vert</i></span>
-              <p><a href={x['ht:news_item'][0]['ht:news_item_url'][0]}>This is a link</a></p>
-            </div>
-            <div className="card-reveal">
-              <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-          </div>
-        )})}
-     </div>
-*/
-
-    ///////////////////////////////////////////////////////////
 
   render() {
 
     return(
       <div className = "card-columns" style={{"margin": 'auto'}}>
-        {this.state.searchGoogle.map((x) => {
+        {this.state.searchGoogle.map((x, key) => {
           return(
             <div className = "row">
               <div className="col-md-3">

@@ -92,7 +92,7 @@ exports.userLogout = function(req, res) {
 exports.queryGoogle = function(req, res) {
   // console.log('write something')
   // res.send(200);
-  // console.log('reqparams', req.body);
+  console.log('reqparams', req.body);
   var params = {
     geo: 'US',
     // date:
@@ -102,7 +102,6 @@ exports.queryGoogle = function(req, res) {
 
   googleTrends.hotTrendsDetail(params)
   .then(function(result){
-    console.log('this is the result from server', result);
     res.send(result.rss.channel[0].item)
     // callback(result.rss.channel[0].item);
     // console.log(result.rss.channel[0].item);
@@ -120,17 +119,18 @@ exports.queryGoogle = function(req, res) {
 exports.queryGoogle = function(req, res) {
   // console.log('write something')
   // res.send(200);
-  // console.log('reqparams', req.body);
+  var queryDefault = ['immigration', 'trump']
+  var query = req.body.query.concat(queryDefault)
   var params = {
     geo: 'US',
     // date:
-    keywords: 'immigration',
+    keywords: query,
     category: 'politics'
   }
 
   googleTrends.hotTrendsDetail(params)
   .then(function(result){
-    console.log('this is the result from server', result);
+    console.log(result)
     res.send(result.rss.channel[0].item)
     // callback(result.rss.channel[0].item);
     // console.log(result.rss.channel[0].item);

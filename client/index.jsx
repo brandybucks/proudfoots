@@ -132,11 +132,11 @@ class App extends React.Component {
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
                 <span style={isShowing('Trends')}>
-                  <Trends style={isShowing('Trends')} username={this.state.username} />
+                  <Trends style={isShowing('Trends')} username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
                 <span style={isShowing('LegislatorsInfo')}>
                   <LegislatorsInfo
-                  style={isShowing('LegislatorsInfo')} 
+                  style={isShowing('LegislatorsInfo')}
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long}
                   userState={this.state.userState} />
@@ -144,7 +144,7 @@ class App extends React.Component {
 
                 <span style={isShowing('Meetups')}>
                 <Meetups
-                  style={isShowing('Meetups')} 
+                  style={isShowing('Meetups')}
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
                 </span>
