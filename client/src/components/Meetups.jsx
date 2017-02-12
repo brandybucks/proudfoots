@@ -19,7 +19,8 @@ class Meetups extends React.Component {
 
     // Default State
     this.state = {
-      localMeetups: []
+      localMeetups: [],
+      radius: 25
     };
 
     this.render = this.render.bind(this);
@@ -27,6 +28,20 @@ class Meetups extends React.Component {
 
   createMarkup(markup) {
     return {__html: markup};
+  }
+
+  handleSliderChange(event) {
+    var values = [1, 5, 10, 25];
+
+    this.setState({
+      radius: values[event.target.value - 1]
+    });
+
+    $('#rangeSliderNumbers').children().css('color', 'white');
+
+    $('#rangeSliderNumbers span:nth-child(' + (event.target.value) + ')').css('color', '#BFBFAE');
+
+    this.fetchMeetups(values[event.target.value - 1]);
   }
 
 
@@ -46,19 +61,18 @@ class Meetups extends React.Component {
     };
 
     const radiusSelectStyle = {
-      display: 'inline-block',
+      // display: 'inline-block',
+      display: 'flex',
       float: 'right',
       marginRight: '15px',
     };
 
     const radiusNumbers = {
-      color: 'white'
+      fontSize: '0.7em',
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'space-between'
     };
-
-    // const activeRadiusNumber = {
-    //   color: 'grey'
-    // };
-
 
 
     return (
@@ -67,11 +81,26 @@ class Meetups extends React.Component {
           <h3 className="panel-title">
             Your Local Political and 'Movement' Meetups:
             <div style={radiusSelectStyle}>
-              Search Radius (miles from home):
-              <span onClick={this.fetchMeetups.bind(this, 1)} style={radiusNumbers}> 1</span>
-              <span onClick={this.fetchMeetups.bind(this, 5)} style={radiusNumbers}> 5</span>
-              <span onClick={this.fetchMeetups.bind(this, 10)} style={radiusNumbers}> 10</span>
-              <span onClick={this.fetchMeetups.bind(this, 25)} style={radiusNumbers}> 25</span>
+              <div style={{'marginRight': '5px'}}>
+                Search Radius (miles):
+              </div>
+              <div>
+                <form id="sliderData" style={{'width': '60px'}}>
+                  <input
+                    onChange={this.handleSliderChange.bind(this)}
+                    id="slider1"
+                    type="range"
+                    min="1"
+                    max="4">
+                  </input>
+                  <span id='rangeSliderNumbers' style={radiusNumbers}>
+                    <span>1</span>
+                    <span>5</span>
+                    <span>10</span>
+                    <span style={{'color': '#BFBFAE'}}>25</span>
+                  </span>
+                </form>
+              </div>
             </div>
           </h3>
         </div>
@@ -115,7 +144,7 @@ class Meetups extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchMeetups(1);
+    this.fetchMeetups(25);
   }
 
   fetchMeetups(searchRadius) {

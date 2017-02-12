@@ -28,7 +28,7 @@ exports.getMeetups = function(req, res) {
       radius: req.query.searchRadius,
       category: 13,
       sign: true,
-      key: '415a2c7626b621d2d652a192c17154'
+      key: apiKey.meetupApiK.key
     })
     .end(function(response) {
       res.send(response);
