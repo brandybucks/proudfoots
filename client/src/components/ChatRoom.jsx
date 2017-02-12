@@ -28,14 +28,12 @@ class ChatRoom extends React.Component {
   componentWillMount() {
     axiosHelper.getAllMessage()
     .then((resp) => {
-      console.log("Data retrieve!!!!!", resp.data)
     this.setState({
       messages: resp.data
       //messages: [...this.state.messages, message]
     });
     })
     .catch((err) => {
-      console.log('Could not retrieve message!!')
     })
   }
 
@@ -45,7 +43,6 @@ class ChatRoom extends React.Component {
     //socket.io default path is '/' but can also manually define path ('/').
     this.socket = io('/');
     this.socket.on('message', function(message) {
-      console.log('message received at front end', message)
       context.setState({
         //this method will insert new message to the first of the message array and the spread operator will set the rest of the messages after the new message.
         messages: [...context.state.messages, message]
@@ -72,10 +69,8 @@ class ChatRoom extends React.Component {
   saveMessageToDB(message) {
     axiosHelper.addMessage(message)
     .then((resp) => {
-      console.log('Message saved!!!',resp.data)
     })
     .catch((err) => {
-      console.log('Could not save message!')
     })
   }
 

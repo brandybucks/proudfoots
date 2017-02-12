@@ -28,7 +28,6 @@ class Trends extends React.Component {
         query: queryArray
       })
     .then(function(response){
-      console.log('response', response);
       context.setState({searchGoogle: response.data})
     })
     .catch(function(error){
@@ -46,19 +45,17 @@ class Trends extends React.Component {
 
     return(
       <div className = "trends">
-      <div className = "card-columns" style={{"margin": 'auto'}}>
+      <div className = "card-columns" style={{"margin": '30px'}}>
         {this.state.searchGoogle.map((x, key) => {
           return(
             <div className = "row">
               <div className="col-md-3">
-              <div className="card" style={{width: '318px', "margin": "20px"}}>
-                  <a href= {x['ht:news_item'][0]['ht:news_item_url'][0]} >
-                <img className="card-img-top" src={x['ht:picture'][0]} alt="Card image cap" style = {{height: "250px", "width": "318"}}/>
+              <div className="card trendsPadding" style={{width: '300px', "margin": "20px"}}>
+                  <a href= {x['ht:news_item'][0]['ht:news_item_url'][0]} target="new">
+                <img className="card-img-top" src={x['ht:picture'][0]} alt="Card image cap" style = {{height: "230px", "width": "230"}}/>
                 <div className="card-block">
-
                   <h4 className="card-title" dangerouslySetInnerHTML={{__html:x['ht:news_item'][0]['ht:news_item_title'][0]}}></h4>
-
-                  <p className="card-text" style ={{"color": "#696969"}}dangerouslySetInnerHTML={{__html:x['ht:news_item'][0]['ht:news_item_snippet'][0]}}></p>
+                  <p className="card-text" style ={{"color": "#696969"}} dangerouslySetInnerHTML={{__html:x['ht:news_item'][0]['ht:news_item_snippet'][0]}}></p>
                 </div>
                     </a>
               </div>

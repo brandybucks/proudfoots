@@ -24,7 +24,6 @@ var io = socketIo(server);
 
 //socket.oi connection configuration for the server end to handle incomming data with io.on and handle out going data by broadcasting with socket.broadcast.emit.
 io.on('connection', function(socket) {
-  console.log("SOCKET CONNECTED!!!!!")
   socket.on('message', function(messageObj) {
     //console.log("message received from backend!!", messageObj)
     socket.broadcast.emit('message', messageObj)
