@@ -129,10 +129,17 @@ class UserStateLegislatorsInfoPresentational extends React.Component {
         </div>
 
         <div className = "panel-body reduceTop">
-          <h3>Governor</h3>
-          <div className="panel-heading" >
-            <h3 className="panel-title">{this.props.governor} ({this.props.governorParty})</h3>
-          </div>
+          {this.props.governor &&
+            <div>
+              <h3>Governor</h3>
+              <div className="panel panel-default" >
+                <div className="panel-heading" >
+                  <h3 className="panel-title">{this.props.governor} ({this.props.governorParty})</h3>
+                </div>
+              </div>
+
+            </div>
+          }
 
           <h3>State Legislators</h3>
           {this.props.senatorsInfo.map((senatorInfo, index) => {
