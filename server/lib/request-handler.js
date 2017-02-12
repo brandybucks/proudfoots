@@ -2,7 +2,7 @@ var apiKey = require('./api_config.js');
 var path = require('path');
 var unirest = require('unirest');
 var User = require('./../../db/models/user');
-var Message = require('./../../db/models/message')
+var Message = require('./../../db/models/message');
 var util = require('./utility.js');
 var BillAssociate = require('./billAssociate.js');
 var bodyParser = require('body-parser');
@@ -28,7 +28,7 @@ exports.getMeetups = function(req, res) {
       radius: req.query.searchRadius,
       category: 13,
       sign: true,
-      key: '415a2c7626b621d2d652a192c17154'
+      key: apiKey.meetupApiK.key
     })
     .end(function(response) {
       res.send(response);
