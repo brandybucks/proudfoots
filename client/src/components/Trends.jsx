@@ -51,7 +51,7 @@ class Trends extends React.Component {
             <div className = "row">
               <div className="col-md-3">
               <div className="card trendsPadding" style={{width: '300px', "margin": "20px"}}>
-                  <a href= {x['ht:news_item'][0]['ht:news_item_url'][0]} >
+                  <a href= {x['ht:news_item'][0]['ht:news_item_url'][0]} target="new">
                 <img className="card-img-top" src={x['ht:picture'][0]} alt="Card image cap" style = {{height: "230px", "width": "230"}}/>
                 <div className="card-block">
                   <h4 className="card-title" dangerouslySetInnerHTML={{__html:x['ht:news_item'][0]['ht:news_item_title'][0]}}></h4>

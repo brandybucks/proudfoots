@@ -400,3 +400,8 @@ body {
 .trendsPadding {
   padding: 30px !important;
 }
+.trendsPadding a:hover {
+  color: #000000 !important;
+  text-decoration: none !important;
+  font-weight: bold;
+}
