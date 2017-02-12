@@ -26,11 +26,12 @@ class StateLegislatorInfoPresentational extends React.Component {
     super(props);
   }
   render() {
+
     let info = this.props.info;
     return (
       <div className="panel panel-default" >
         <div className="panel-heading" data-toggle="collapse" data-target={'#' + info.chamber}>
-          <h3 className="panel-title">{info.full_name}</h3>
+          <h3 className="panel-title">{info.full_name} ({info.party})</h3>
         </div>
       <div id={info.chamber} className="collapse">
         <table className="table">
